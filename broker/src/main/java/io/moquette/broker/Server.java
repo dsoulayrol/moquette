@@ -381,6 +381,15 @@ public class Server {
     }
 
     /**
+     * Return a descriptor for the given connected client.
+     *
+     * @param  clientId the ID of the client to describe.
+     * */
+    public Optional<ClientDescriptor> getConnectedClient(String clientId) {
+        return sessions.getConnectedClient(clientId);
+    }
+
+    /**
      * Return a list of descriptors of connected clients.
      * */
     public Collection<ClientDescriptor> listConnectedClients() {

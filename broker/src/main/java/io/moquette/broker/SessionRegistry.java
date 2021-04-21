@@ -252,6 +252,18 @@ public class SessionRegistry {
         queues.remove(clientId);
     }
 
+    Optional<ClientDescriptor> getConnectedClient(String clientID) {
+        Session s = retrieve(clientID);
+        Optional<ClientDescriptor> descriptor;
+
+        if (s != null)
+            descriptor = createClientDescriptor(s);
+        else
+            descriptor = Optional.empty();
+
+        return descriptor;
+    }
+
     Collection<ClientDescriptor> listConnectedClients() {
         return pool.values().stream()
             .filter(Session::connected)
