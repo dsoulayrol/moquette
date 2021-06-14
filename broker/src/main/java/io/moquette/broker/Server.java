@@ -395,4 +395,15 @@ public class Server {
     public Collection<ClientDescriptor> listConnectedClients() {
         return sessions.listConnectedClients();
     }
+
+    /**
+     * Immediately close the session for some client.
+     *
+     * @param  clientId the ID of the client to be disconnected.
+     */
+    public void disconnectClient(String clientId) {
+        Session session = sessions.retrieve(clientId);
+        if (session != null)
+            session.closeImmediately();
+    }
 }
